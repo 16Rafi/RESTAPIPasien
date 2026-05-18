@@ -9,4 +9,23 @@ interface ApiService {
 
     @GET("pasien")
     fun getPatients(@Header("Authorization") token: String): Call<PatientResponse>
+
+    @POST("pasien")
+    fun createPatient(
+        @Header("Authorization") token: String,
+        @Body body: Map<String, String>
+    ): Call<BaseResponse>
+
+    @POST("pasien/{id}")
+    fun updatePatient(
+        @Path("id") id: Int,
+        @Header("Authorization") token: String,
+        @Body body: Map<String, String>
+    ): Call<BaseResponse>
+
+    @DELETE("pasien/{id}")
+    fun deletePatient(
+        @Path("id") id: Int,
+        @Header("Authorization") token: String
+    ): Call<BaseResponse>
 }
